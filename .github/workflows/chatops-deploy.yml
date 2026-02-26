@@ -1,0 +1,15 @@
+name: ChatOps Deployment
+on:
+  repository_dispatch:
+    types: [chatops-deploy]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Deploy
+        run: |
+          echo "Deploying to ${{ github.event.client_payload.environment }}"
+          echo "ID: ${{ github.event.client_payload.deployment_id }}"
+          echo "Success!"
